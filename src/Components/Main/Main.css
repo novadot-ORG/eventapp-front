@@ -1,0 +1,31 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.sidebar-open .content-container {
+  margin-left: 300px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-closed .content-container {
+  margin-left: 0px; 
+  transition: margin-left 0.3s ease;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+
+  
+  /* For smaller screens, disable the margin shift */
+  @media (max-width: 1200px) {
+    .sidebar-open .content-container,
+    .sidebar-closed .content-container {
+      margin-left: 0;
+      transition: none;
+    }
+  }
+  

@@ -1,0 +1,60 @@
+/* login.css */
+
+/* Container styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .section {
+    width: 100%;
+    display: flex;
+  }
+  
+  /* Image container styling */
+  .login-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the full height and width */
+  }
+  
+  /* Form container styling */
+  .login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: white;
+  }
+  
+  h5 {
+    font-weight: 600;
+  }
+  
+  .form-control {
+    border-radius: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 10px;
+    }
+    .login-image {
+      display: block; /* Image will show on small screens */
+    }
+    .login-form-container {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+  
