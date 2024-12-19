@@ -120,7 +120,7 @@ const Home = () => {
       }
     } catch (error) {
       console.error("Error during check-in:", error);
-      message.error("An unexpected error occurred.");
+      // message.error("An unexpected error occurred.");
     }
   };
   

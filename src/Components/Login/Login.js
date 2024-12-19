@@ -20,32 +20,60 @@ const Login = () => {
     setLoading(true);
   
     const form = e.target;
+  
+    // Validate the form
     if (!form.checkValidity()) {
       form.reportValidity();
       setLoading(false);
       return;
     }
   
-    try {
-      const { username, password } = formData;
+    const { username, password } = formData;
   
-      const token = await loginUser(username, password); 
+  
+    if (!username || !password) {
+      setErrorMessage("Username and password are required.");
+      message.error("Username and password are required.");
+      setLoading(false);
+      return;
+    }
+  
+    try {
+
+      const basicAuth = `Basic ${btoa(`${username}:${password}`)}`;
+      
+  
+ 
+      const storedAuthHeader = localStorage.getItem("authHeader");
+  
+      if (basicAuth !== storedAuthHeader) {
+        throw new Error("Username and password do not match.");
+      }
+      
+  
+   
+      const token = await loginUser(username, password);
   
       if (token) {
-        localStorage.setItem("authToken", token); 
+      
+        localStorage.setItem("authToken", token);
         message.success("Login successful!");
-        navigate("/home"); 
+        navigate("/home");
       } else {
-        throw new Error("Invalid token received.");
+        throw new Error("Invalid token received from the server.");
       }
     } catch (error) {
+   
       console.error("Error:", error.message);
-      setErrorMessage(error.message);
-      message.error(`Login failed: ${error.message}`);
+      setErrorMessage(error.message || "An unexpected error occurred.");
+      message.error(`Login failed: ${error.message || "Please try again."}`);
     } finally {
+   
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="container">
@@ -114,7 +142,7 @@ const Login = () => {
                       <button
                         className="btn btn-primary w-100"
                         type="submit"
-                        disabled={loading} // Disable button while loading
+                        disabled={loading} 
                       >
                         {loading ? (
                           <div

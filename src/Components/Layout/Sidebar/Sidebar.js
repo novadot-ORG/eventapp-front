@@ -10,11 +10,6 @@ const Sidebar = () => {
 
   const activePage = location.pathname.split("/")[1];
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("authToken");
-
-  //   navigate("/");
-  // };
   const handleLogout = async () => {
     const token = localStorage.getItem("authToken");
   
